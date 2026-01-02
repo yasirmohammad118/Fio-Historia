@@ -23,6 +23,12 @@ const products = [
         description: "A historical fiction novel set in ancient Rome.",
         price: 0,
         image: "assets/container/pic4.jpg"
+    },
+    {
+        name: "Fio Historia 4",
+        description: "A historical fiction novel set in ancient Rome.",
+        price: 0,
+        image: "assets/container/pic4.jpg"
     }
 ];
 
@@ -116,4 +122,5 @@ document.addEventListener("DOMContentLoaded", () => {
         toggle.setAttribute('aria-expanded', String(isOpen));
     });
 });
+
 

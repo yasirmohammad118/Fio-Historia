@@ -1,0 +1,254 @@
+/* ---------- GLOBAL RESET ---------- */
+html, body {
+    height: 100%;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* ---------- PAGE LAYOUT ---------- */
+.page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* ---------- NAVBAR ---------- */
+.nav {
+    background-color: #f2d4e1;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.nav img {
+    max-height: 80px;
+    width: auto;
+}
+
+/* hamburger button (hidden on desktop) */
+.hamburger {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+}
+.hamburger .bar {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background: rgb(91, 88, 88);
+    margin: 5px 0;
+    border-radius: 2px;
+    transform-origin: center;
+    transition: transform .3s ease, opacity .2s ease;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    font-size: 1.2rem;
+    margin: 0 auto; /* center the list horizontally */
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: rgb(91, 88, 88);
+    padding: 0.5rem 1rem;
+    transition: background 0.3s;
+}
+
+.nav ul li a:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+/* ---------- HERO IMAGE ---------- */
+.main-pic img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ---------- INTRO TEXT ---------- */
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: rgb(137, 131, 131);
+    font-size: clamp(1.2rem, 2vw, 2rem);
+    margin: 2rem auto;
+    max-width: 800px;
+    padding: 0 1rem;
+}
+
+/* ---------- FEATURE / PRODUCT SECTION ---------- */
+.f-div {
+    background: #f2d4e1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+.f-div > div:first-child {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.f-div > div:first-child h1 {
+    margin: 0;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: #333;
+    text-align: center;
+}
+
+/* ---------- PRODUCT GRID ---------- */
+#prod {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+/* ---------- PRODUCT CARD ---------- */
+.product {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- BUY BUTTON ---------- */
+.cart-button {
+    background: linear-gradient(#f39dc2, #db5061);
+    border: none;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 12px;
+    width: 80%;
+    max-width: 250px;
+    margin: 1rem auto 0;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.cart-button:hover {
+    transform: scale(1.05);
+}
+
+/* ---------- FOOTER ---------- */
+.foot {
+    background-color: #92a4ce;
+    width: 100%;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+.foot h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.foot p {
+    margin: 0.3rem 0;
+    color: white;
+}
+
+/* ---------- MEDIA QUERIES ---------- */
+
+/* Tablets */
+@media (max-width: 768px) {
+    /* keep logo + hamburger on a single row; menu drops below when opened */
+    .nav {
+        flex-direction: row;
+        align-items: center;
+        padding: 0.75rem 1rem;
+        flex-wrap: wrap; /* allow the menu to wrap onto the next line */
+    }
+
+    .nav img { order: 1; }
+
+    .hamburger {
+        display: block;
+        order: 2;
+        margin-left: auto;
+    }
+
+    /* animate the menu open/close by animating max-height & opacity; menu sits on its own row */
+    .nav ul {
+        order: 3;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height .35s ease, opacity .25s ease;
+        flex-direction: column;
+        gap: 1rem;
+        margin: 0;
+        padding-top: 0.75rem;
+    }
+
+    .nav.open ul {
+        max-height: 600px; /* adjust if you add more items */
+        opacity: 1;
+    }
+
+    /* transform hamburger into an X when open */
+    .nav.open .hamburger .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .nav.open .hamburger .bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav.open .hamburger .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .hamburger .bar,
+    .nav ul { transition: none !important; }
+}
+
+/* Mobiles */
+@media (max-width: 480px) {
+    .nav img {
+        max-height: 60px;
+    }
+
+    .text {
+        font-size: 1rem;
+    }
+
+    .cart-button {
+        font-size: 0.9rem;
+    }
+}
+.main-pic{
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+}
+.main-pic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 1s ease-in-out;
+    opacity: 1;
+}
